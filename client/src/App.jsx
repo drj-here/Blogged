@@ -6,7 +6,6 @@ import SignUp from './pages/SignUp'
 import Projects from './pages/Projects'
 import About from './pages/About'
 import { BrowserRouter ,Routes,Route } from 'react-router-dom'
-import './App.css'
 import Header from './components/Header'
 
 function App() {
