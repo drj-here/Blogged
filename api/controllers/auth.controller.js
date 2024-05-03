@@ -28,8 +28,7 @@ export const signup=async(req,res,next)=>{
 
 export const signin=async(req,res,next)=>{
 
-    const {email,password}=req.body
-    console.log(email)
+    const {email,password}=req.body;
     if(!email || !password || email==='' || password==='') 
     next(errorHandler(400,'All fields are required'))
 
@@ -54,17 +53,18 @@ export const signin=async(req,res,next)=>{
         })
         .json(rest)
     } catch (error) {
+        console.log(error.message)
         next(error)
     }
 }
 
 export const google=async(req,res,next)=>{
-    const {name,email,photoUrl}=req.body;
+    const {name,email,googlePhotoUrl}=req.body;
     try {
-        const user=await User.findOne({email})
-        if(user){
-            const token=jwt.sign({id:user._id,isAdmin:validUser.isAdmin},process.env.JWT_SECRET)
-            const {password,...rest}=user._doc;
+        const validUser=await User.findOne({email})
+        if(validUser){
+            const token=jwt.sign({id:validUser._id,isAdmin:validUser.isAdmin},process.env.JWT_SECRET)
+            const {password,...rest}=validUser._doc;
             res.status(200)
             .cookie('access-token',token,{
                 httpOnly:true 
