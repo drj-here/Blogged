@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import PostCard from '../components/PostCard';
 
 export default function Home() {
-  const [posts,setPosts]=useState([])
+  const [posts, setPosts] = useState([]);
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await fetch('/api/post/getPosts');
@@ -13,6 +13,7 @@ export default function Home() {
     };
     fetchPosts();
   }, []);
+
   return (
     <div>
       <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto '>
@@ -52,6 +53,4 @@ export default function Home() {
       </div>
     </div>
   );
-}
-  )
 }
