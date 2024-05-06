@@ -48,8 +48,10 @@ export const likeComment=async(req,res,next)=>{
             comment.numberOfLikes-=1;
             comment.likes.splice(userIndex,1)
         }
+        await comment.save()
         res.status(200).json(comment)
     } catch (error) {
+      console.log(error.message)
         next(error)
     }
 }
