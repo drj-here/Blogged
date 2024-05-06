@@ -13,9 +13,10 @@ export const createComment=async(req,res,next)=>{
             userId,
             postId
         })
-        await newComment.dispatchEvent()
+        await newComment.save()
         res.status(200).json(newComment)
     } catch (error) {
+      console.log(error.message)
        next(error) 
     }
 }

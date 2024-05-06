@@ -56,7 +56,7 @@ export default function CommentSection({ postId }) {
     getComments()
   },[postId])
 
-  const handleClick=async(commentId)=>{
+  const handleLike=async(commentId)=>{
     try {
       if(!currentUser){
         navigate('/sign-in')
@@ -177,10 +177,10 @@ export default function CommentSection({ postId }) {
           <Comment
            key={comment._id} 
            comment={comment} 
-           onLike={handleClick} 
+           onLike={handleLike} 
            onEdit={handleEdit} 
            onDelete={(commentId)=>{
-            setShowModal(false)
+            setShowModal(true)
             setCommentToDelete(commentId)
            }}/>
         ))}
